@@ -1,6 +1,6 @@
 Name:		texlive-pdftex-quiet
 Version:	49169
-Release:	1
+Release:	2
 Summary:	A bash wrapper for pdfTeX limiting its output to relevant errors
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/pdftex-quiet
