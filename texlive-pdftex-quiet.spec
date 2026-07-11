@@ -1,38 +1,23 @@
-Name:		texlive-pdftex-quiet
-Version:	49169
-Release:	2
+%global tl_name pdftex-quiet
+%global tl_revision 49169
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.1.0
+Release:	%{tl_revision}.1
 Summary:	A bash wrapper for pdfTeX limiting its output to relevant errors
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/pdftex-quiet
+URL:		https://www.ctan.org/tex-archive/support/pdftex-quiet
 License:	gpl3
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/pdftex-quiet.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/pdftex-quiet.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/pdftex-quiet.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/pdftex-quiet.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Requires:	texlive(pdftex-quiet.bin)
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-This package provides a bash script aiming at reducing pdfTeX's
-output to relevant errors, which are displayed in a red bold
-font. The project originally started as a TeX StackExchange
-answer.
+This package provides a bash script aiming at reducing pdfTeX's output
+to relevant errors, which are displayed in a red bold font. The project
+originally started as a TeX StackExchange answer.
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_datadir}
-cp -a texmf-dist %{buildroot}%{_datadir}
-
-%files
-%{_texmfdistdir}/texmf-dist/scripts/pdftex-quiet
-%doc %{_texmfdistdir}/texmf-dist/doc/support/pdftex-quiet
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
