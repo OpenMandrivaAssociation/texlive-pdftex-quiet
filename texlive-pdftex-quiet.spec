@@ -1,5 +1,6 @@
 %global tl_name pdftex-quiet
 %global tl_revision 49169
+%global tl_bin_links pdftex-quiet:%{_texmfdistdir}/scripts/pdftex-quiet/pdftex-quiet
 
 Name:		texlive-%{tl_name}
 Epoch:		1
@@ -15,6 +16,8 @@ BuildArch:	noarch
 BuildSystem:	texlive
 Requires:	texlive(pdftex-quiet.bin)
 Provides:	texlive(%{tl_name}) = %{tl_revision}
+Provides:	texlive(%{tl_name}.bin) = %{tl_revision}
+Provides:	texlive-%{tl_name}.bin = %{EVRD}
 
 %description
 This package provides a bash script aiming at reducing pdfTeX's output
